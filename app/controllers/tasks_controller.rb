@@ -1,10 +1,13 @@
-class MessagesController < ApplicationController
+class TasksController < ApplicationController
+  
   def index
     @task = Task.all
   end
+  
   def show
     @task = Task.find(params[:id])
   end
+  
   def new
     @task = Task.new
   end
@@ -12,7 +15,7 @@ class MessagesController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    if @task.save
+    if @tasks.save
       flash[:success] = 'Task が正常に投稿されました'
       redirect_to @task
     else
@@ -49,5 +52,6 @@ class MessagesController < ApplicationController
 
   # Strong Parameter
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:tasks).permit(:content)
+  end
 end
